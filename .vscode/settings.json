@@ -1,0 +1,11 @@
+{
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": true,
+        "source.removeUnusedImports": true
+    },
+    "i18n-ally.localesPaths": [
+        "src/i18n",
+        "src/i18n/locales"
+    ]
+}
