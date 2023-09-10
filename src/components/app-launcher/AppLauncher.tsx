@@ -56,4 +56,5 @@ const AppLauncher: React.FC<AppLauncherProps> = ({ iconURI, ...props }) => {
     )
 }
 
-export { AppLauncher };
+export { AppLauncher, AppLauncherBox };
+
