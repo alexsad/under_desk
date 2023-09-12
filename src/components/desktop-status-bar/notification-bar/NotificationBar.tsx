@@ -151,7 +151,7 @@ const NotifyList: React.FC = () => {
                         <NotifyItemListContent>
                             <NotifyItemListTitle>{notifiationItem.title}</NotifyItemListTitle>
                             <NotifyItemListMsg>{notifiationItem.msg}</NotifyItemListMsg>
-                            <NotifyItemListCreatedAt>{notifiationItem.createAt}</NotifyItemListCreatedAt>
+                            <NotifyItemListCreatedAt>{new Date(notifiationItem?.createAt).toLocaleString()}</NotifyItemListCreatedAt>
                         </NotifyItemListContent>
                         <ClearIcon onClick={closeNotificationHandler(notifiationItem.notificationId)} />
                     </NotifyItemList>
