@@ -291,12 +291,14 @@ const NotifyPool: React.FC = () => {
         <NotifyPoolBox>
             <StatusItem onClick={showNotifications} />
             <NotifyPoolBadge>{notificationCount}</NotifyPoolBadge>
-            <NotifyListBox>
-                <NotifyContentList>
-                    {isVisible && !hasCriticalInfo && (<NotifyList />)}
-                    <CriticalNotifyList />
-                </NotifyContentList>
-            </NotifyListBox>
+            {(isVisible || hasCriticalInfo) && (
+                <NotifyListBox>
+                    <NotifyContentList>
+                        {isVisible && !hasCriticalInfo && (<NotifyList />)}
+                        <CriticalNotifyList />
+                    </NotifyContentList>
+                </NotifyListBox>
+            )}
         </NotifyPoolBox>
     );
 }
