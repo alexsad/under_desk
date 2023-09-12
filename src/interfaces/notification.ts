@@ -1,9 +1,10 @@
 import { MessagePayload } from "./widget";
 
 export enum NotificationType {
-    WARN,
     INFO,
+    WARN,
     ERROR,
+    SECURITY,
 }
 
 export interface NotificationItem {
@@ -14,6 +15,7 @@ export interface NotificationItem {
     msg: string,
     type: NotificationType,
     domain: string,
+    domainIconPath: string,
 }
 
 export interface NotificationPayload extends MessagePayload {

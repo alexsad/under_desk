@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { styled } from "styled-components";
+import { formatTime, msToTime } from "../../util/time";
 import { NotifyPool } from "./notification-bar/NotificationBar";
 
 const DesktopStatusBarBox = styled.div`
@@ -26,16 +27,18 @@ const SessionTimeDisplay: React.FC = () => {
 
     useEffect(() => {
         const intervalId = setInterval(() => {
-            setDuration(oldDuration => new Date().getTime() - startTime.current);
+            setDuration(() => new Date().getTime() - startTime.current);
         }, 1000);
         return () => {
             clearInterval(intervalId);
         }
     }, []);
 
+    const [mins, secs] = msToTime(duration);
+
     return (
         <SessionTimeDisplayContent>
-            {Math.ceil(duration / 1000)}s
+            {formatTime(mins)}m{formatTime(secs)}s
         </SessionTimeDisplayContent>
     )
 }

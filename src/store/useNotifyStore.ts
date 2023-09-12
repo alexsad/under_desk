@@ -39,7 +39,7 @@ const useNotifyStore = create<useNofityStoreProps>((set, get) => ({
             notificationId: genUuid(),
             createAt: new Date().getTime(),
         }
-        notifications.push(nNotification);
+        notifications.unshift(nNotification);
         set({
             notifications: [
                 ...notifications,

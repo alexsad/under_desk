@@ -68,11 +68,11 @@ const AppLauncherConfig: React.FC<WidgetProps> = ({ processId, processParentId, 
             </FormGroup>
             <FormGroup>
                 <FormLabel>width:</FormLabel>
-                <FormInput id="app_launcher_width" type="number" min="200" max="1000" defaultValue={parentProcess?.width || 200} />
+                <FormInput disabled id="app_launcher_width" type="number" min="200" max="1000" defaultValue={Math.min(Math.floor(parentProcess?.width || 200), 1000)} />
             </FormGroup>
             <FormGroup>
                 <FormLabel>height:</FormLabel>
-                <FormInput id="app_launcher_height" type="number" min="200" max="600" defaultValue={parentProcess?.height || 350} />
+                <FormInput disabled id="app_launcher_height" type="number" min="200" max="600" defaultValue={Math.min(Math.floor(parentProcess?.height || 350), 600)} />
             </FormGroup>
             <FormGroup>
                 <FormButton>

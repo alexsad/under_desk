@@ -89,6 +89,7 @@ const WidgetsContainer: React.FC = () => {
             addNotification({
                 ...payload,
                 domain: processItem.uri,
+                domainIconPath: processItem.iconURI || '',
             });
         };
 

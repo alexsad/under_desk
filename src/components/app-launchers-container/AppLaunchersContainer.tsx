@@ -10,6 +10,7 @@ const AppLaunchersContainerBox = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    overflow: hidden;
 `;
 
 const AppLaunchers = styled.div`
@@ -19,6 +20,7 @@ const AppLaunchers = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    overflow: hidden;
 `;
 
 const AppLauncherAddContainer = styled.div`
@@ -27,6 +29,7 @@ const AppLauncherAddContainer = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    // overflow: hidden;
 `;
 
 const AppLaunchersContainer: React.FC = () => {
