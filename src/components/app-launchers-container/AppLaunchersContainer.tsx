@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 import { useAppLauncherStore } from "../../store/useAppLauncherStore";
-import { AppLauncher, AppLauncherBox } from "../app-launcher/AppLauncher";
+import { AppLauncher } from "../app-launcher/AppLauncher";
 
 const AppLaunchersContainerBox = styled.div`
     width: auto;
@@ -29,27 +29,20 @@ const AppLauncherAddContainer = styled.div`
     align-items: center;
 `;
 
-
-
 const AppLaunchersContainer: React.FC = () => {
     const appLaunchers = useAppLauncherStore(state => state.appLaunchers);
 
-    const onClickCreateAppLauncherHandler = () => { }
     return (
         <AppLaunchersContainerBox>
             <AppLaunchers>
-                {appLaunchers.map(appLauncher => (
+                {appLaunchers.filter(appLauncher => !appLauncher.modulePath).map(appLauncher => (
                     <AppLauncher key={appLauncher.appLauncherId} {...appLauncher} />
                 ))}
             </AppLaunchers>
             <AppLauncherAddContainer>
-                <AppLauncherBox
-                    style={{
-                        backgroundImage: 'url(assets/add_app_launcher.png)',
-                    }}
-                    onClick={onClickCreateAppLauncherHandler}
-                    title={"add app launcher"}
-                />
+                {appLaunchers.filter(appLauncher => !!appLauncher.modulePath).map(appLauncher => (
+                    <AppLauncher key={appLauncher.appLauncherId} {...appLauncher} />
+                ))}
             </AppLauncherAddContainer>
         </AppLaunchersContainerBox>
     )

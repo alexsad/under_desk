@@ -16,8 +16,11 @@ export interface AppLauncherProps {
     createdAt?: number,
     iconURI?: string,
     uri: string,
+    modulePath?: string,
     title: string,
     description: string,
+    width: number,
+    height: number,
 }
 
 export interface WidgetProps extends AppLauncherProps {
@@ -27,7 +30,14 @@ export interface WidgetProps extends AppLauncherProps {
     widgetStatus: WidgetStatus,
     top: number,
     left: number,
-    width: number,
-    height: number,
     inResize?: boolean,
+    processParentId?: string,
+}
+
+export interface MessagePayload {
+    type: string,
+}
+
+export interface ProcessLoadingPayload extends MessagePayload {
+    payload: boolean,
 }

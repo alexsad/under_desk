@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { styled } from "styled-components";
-import bellIcon from "../../ui/assets/bell.png";
+import { NotifyPool } from "./notification-bar/NotificationBar";
 
 const DesktopStatusBarBox = styled.div`
     width: 100vw;
@@ -15,21 +15,10 @@ const DesktopStatusBarBox = styled.div`
     box-sizing: border-box;
 `;
 
-const StatusItem = styled.div`
-    width: 16px;
-    height: 16px;
-    background-image: url(${bellIcon});
-    background-position: center center;
-    background-repeate: no-repeat;
-    background-size:cover;
-    filter: invert(100%);
-    // background-color: #000000DD;
-`;
-
 const SessionTimeDisplayContent = styled.div`
-    font-size: 1rem;
     padding-left: .5rem;
 `;
+
 
 const SessionTimeDisplay: React.FC = () => {
     const startTime = useRef(new Date().getTime());
@@ -54,7 +43,7 @@ const SessionTimeDisplay: React.FC = () => {
 const DesktopStatusBar: React.FC = () => {
     return (
         <DesktopStatusBarBox>
-            <StatusItem />
+            <NotifyPool />
             <SessionTimeDisplay />
         </DesktopStatusBarBox>
     )

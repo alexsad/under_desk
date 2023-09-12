@@ -2,14 +2,15 @@ import { create } from "zustand";
 import { WidgetProps } from "../interfaces/widget";
 import { genUuid } from "../util/gen_uuid";
 
-
 interface useProcessStoreProps {
     processes: WidgetProps[],
     addProcess: (nProcess: WidgetProps) => Promise<WidgetProps>,
     updateProcess: (process: WidgetProps) => Promise<void>,
     getProcess: (processId: string) => WidgetProps | undefined,
+    stopProcess: (processId: string) => Promise<void>,
+    getProcessByAppLauncherId: (appLauncherId: string) => WidgetProps | undefined,
+    getProcessByDomain: (url: string) => WidgetProps | undefined,
 }
-
 
 const useProcessStore = create<useProcessStoreProps>((set, get) => ({
     processes: [],
@@ -42,6 +43,30 @@ const useProcessStore = create<useProcessStoreProps>((set, get) => ({
     getProcess: (processId: string) => {
         const { processes } = get();
         return processes.find(processItem => processItem.processId === processId);
+    },
+    getProcessByAppLauncherId: (appLauncherId: string) => {
+        const { processes } = get();
+        return processes.find(processItem => processItem.appLauncherId === appLauncherId);
+    },
+    getProcessByDomain: (purl: string) => {
+        const { processes } = get();
+        const { hostname } = new URL(purl);
+        return processes.find(processItem => processItem?.uri?.includes(hostname));
+    },
+    stopProcess: async (processId: string) => {
+        const { getProcess, processes } = get();
+        const processItemFound = getProcess(processId);
+        if (processItemFound) {
+            const processIndex = processes.findIndex(processItem => processItem.processId === processId);
+            if (processIndex > -1) {
+                processes.splice(processIndex, 1);
+                set({
+                    processes: [
+                        ...processes,
+                    ]
+                })
+            }
+        }
     },
 }));
 

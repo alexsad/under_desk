@@ -2,13 +2,12 @@ import { create } from "zustand";
 import { AppLauncherProps } from "../interfaces/widget";
 import { genUuid } from "../util/gen_uuid";
 
-
 interface useAppLauncherStoreProps {
     appLaunchers: AppLauncherProps[],
     addLauncher: (nAppLauncher: AppLauncherProps) => Promise<void>,
     updateLauncher: (appLauncher: AppLauncherProps) => Promise<void>,
+    getLauncher: (appLauncherId: string) => AppLauncherProps | undefined,
 }
-
 
 const useAppLauncherStore = create<useAppLauncherStoreProps>((set, get) => ({
     appLaunchers: [
@@ -19,6 +18,8 @@ const useAppLauncherStore = create<useAppLauncherStoreProps>((set, get) => ({
             uri: 'https://m-weather.netlify.app/',
             title: 'weather app',
             description: 'weather app',
+            width: 463,
+            height: 690,
         },
         {
             appLauncherId: genUuid(),
@@ -27,6 +28,8 @@ const useAppLauncherStore = create<useAppLauncherStoreProps>((set, get) => ({
             uri: 'https://merge-game.netlify.app/levels/easy',
             title: 'merge game',
             description: 'merge game',
+            width: 300,
+            height: 600,
         },
         {
             appLauncherId: genUuid(),
@@ -35,6 +38,8 @@ const useAppLauncherStore = create<useAppLauncherStoreProps>((set, get) => ({
             uri: 'https://spritez.netlify.app/sprite-builder',
             title: 'spritez',
             description: 'spritez builder app',
+            width: 1200,
+            height: 800,
         },
         {
             appLauncherId: genUuid(),
@@ -43,6 +48,8 @@ const useAppLauncherStore = create<useAppLauncherStoreProps>((set, get) => ({
             uri: 'https://simple-weather-app2.netlify.app/',
             title: 'simple weather',
             description: 'simple weather app',
+            width: 400,
+            height: 800,
         },
         {
             appLauncherId: genUuid(),
@@ -51,15 +58,50 @@ const useAppLauncherStore = create<useAppLauncherStoreProps>((set, get) => ({
             uri: 'https://logical-operators-test.netlify.app/',
             title: 'logical operators test',
             description: 'logical operators test app',
+            width: 1200,
+            height: 800,
         },
         {
             appLauncherId: genUuid(),
             createdAt: new Date().getTime(),
-            iconURI: 'assets/default_app_launcher.png',
+            iconURI: 'https://secret-santa-list.netlify.app/img/icons/favicon-32x32.png',
             uri: 'https://secret-santa-list.netlify.app/',
             title: 'secret santa list',
             description: 'secret santa list test app',
-        }
+            width: 400,
+            height: 500,
+        },
+        {
+            appLauncherId: genUuid(),
+            createdAt: new Date().getTime(),
+            iconURI: 'https://www.shareicon.net/data/48x48/2015/07/25/74796_notepad_256x256.png',
+            uri: 'https://notepad.pw/under-desktop',
+            title: 'notepad_pw',
+            description: 'simple notepad to share',
+            width: 530,
+            height: 600,
+        },
+        {
+            appLauncherId: genUuid(),
+            createdAt: new Date().getTime(),
+            iconURI: 'assets/add_app_launcher.png',
+            uri: '',
+            modulePath: 'app-launcher-config/AppLauncherConfig',
+            title: 'launcher config',
+            description: 'config app launcher',
+            width: 300,
+            height: 400,
+        },
+        // {
+        //     appLauncherId: genUuid(),
+        //     createdAt: new Date().getTime(),
+        //     iconURI: 'assets/default_app_launcher.png',
+        //     uri: 'http://127.0.0.1:8080/public/#',
+        //     title: 'test app events',
+        //     description: 'test app events',
+        //     width: 300,
+        //     height: 400,
+        // },
     ],
     addLauncher: async (nAppLauncher: AppLauncherProps) => {
         const { appLaunchers } = get();
@@ -85,6 +127,10 @@ const useAppLauncherStore = create<useAppLauncherStoreProps>((set, get) => ({
                 ]
             })
         }
+    },
+    getLauncher: (appLauncherId: string) => {
+        const { appLaunchers } = get();
+        return appLaunchers.find(appLauncherItem => appLauncherItem.appLauncherId === appLauncherId);
     }
 }));
 
