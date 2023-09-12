@@ -136,6 +136,10 @@ const NotifyList: React.FC = () => {
         }
     }
 
+    if (notifications.length === 0) {
+        return null;
+    }
+
     return (
         <NotifyListBox>
             <ArrowIcon />

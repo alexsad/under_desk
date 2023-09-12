@@ -92,16 +92,16 @@ const useAppLauncherStore = create<useAppLauncherStoreProps>((set, get) => ({
             width: 300,
             height: 400,
         },
-        // {
-        //     appLauncherId: genUuid(),
-        //     createdAt: new Date().getTime(),
-        //     iconURI: 'assets/default_app_launcher.png',
-        //     uri: 'http://127.0.0.1:8080/public/#',
-        //     title: 'test app events',
-        //     description: 'test app events',
-        //     width: 300,
-        //     height: 400,
-        // },
+        {
+            appLauncherId: genUuid(),
+            createdAt: new Date().getTime(),
+            iconURI: 'assets/default_app_launcher.png',
+            uri: 'https://under-desk-module-test.netlify.app/',
+            title: 'test app events',
+            description: 'test app events',
+            width: 300,
+            height: 400,
+        },
     ],
     addLauncher: async (nAppLauncher: AppLauncherProps) => {
         const { appLaunchers } = get();

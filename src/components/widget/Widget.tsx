@@ -2,6 +2,7 @@ import classNames from "classnames";
 import React, { Suspense, useEffect } from "react";
 import { styled } from "styled-components";
 import { ProcessStatus, WidgetProps, WidgetStatus } from "../../interfaces/widget";
+import { useNotifyStore } from "../../store/useNotifyStore";
 import { useProcessStore } from "../../store/useProcessStore";
 import reloadIcon from "../../ui/assets/reload.png";
 import { WidgetHeader } from "./widget-header/WidgetHeader";
@@ -92,6 +93,7 @@ const WidgetIframe: React.FC<WidgetProps> = (props) => {
 const WidgetItem: React.FC<WidgetProps> = (props) => {
     const isAnUtility = !!props?.modulePath;
     const isMinimized = props?.widgetStatus === WidgetStatus.MINIMIZED;
+
     const baseStyle = {
         width: `${props.width}px`,
         height: `${props.height}px`,
@@ -104,6 +106,13 @@ const WidgetItem: React.FC<WidgetProps> = (props) => {
         baseStyle.top = `${props.top}px`;
         baseStyle.left = `${props.left}px`;
     }
+
+    useEffect(() => {
+        const { setVisible } = useNotifyStore.getState();
+        if (isAnUtility) {
+            setVisible(false);
+        }
+    }, [isAnUtility]);
 
     useEffect(() => {
         const { updateProcess, getProcess } = useProcessStore.getState();
