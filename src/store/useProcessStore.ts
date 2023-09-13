@@ -50,8 +50,8 @@ const useProcessStore = create<useProcessStoreProps>((set, get) => ({
     },
     getProcessByDomain: (purl: string) => {
         const { processes } = get();
-        const { hostname } = new URL(purl);
-        return processes.find(processItem => processItem?.uri?.includes(hostname));
+        const { host } = new URL(purl);
+        return processes.find(processItem => processItem?.uri?.includes(host));
     },
     stopProcess: async (processId: string) => {
         const { getProcess, processes } = get();
