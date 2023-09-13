@@ -10,7 +10,7 @@ const WidgetHeaderBar = styled.div`
     width: 100%;
     background-color:#000000CC;
     padding: .2rem .2rem .4rem .2rem;
-    border: 1px solid #cccccc9e;
+    border: 1px solid #2c2c2c;
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
@@ -37,28 +37,41 @@ const BaseBtn = styled.div`
     width: 14px;
     height: 14px;
     background-color: #ccc;
-    cursor: pointer;
+    cursor: default;
     margin: 0 .1rem 0 .1rem;
+    background-repeat: no-repeat;
+    background-position: center center;
 `;
 
 const CloseBtn = styled(BaseBtn)`
+    cursor: pointer;
     background-color: #914e4e;
 `;
 
 const MaxBtn = styled(BaseBtn)`
+    cursor: pointer;
     background-color: #537b58;
 `;
 
 const MinBtn = styled(BaseBtn)`
+    cursor: pointer;
     background-color: #a88e00;
 `;
 
 const ConfigBtn = styled(BaseBtn)`
+    cursor: pointer;
    background-image:url(${cogIcon});
    width: 16px;
    height: 16px;
    background-color: transparent;
    filter:invert(100%);
+`;
+
+const AppIcon = styled(BaseBtn)`
+   width: 16px;
+   height: 16px;
+   background-color: transparent;
+   background-size: contain;
 `;
 
 const WidgetHeader: React.FC<WidgetProps> = (props) => {
@@ -113,11 +126,12 @@ const WidgetHeader: React.FC<WidgetProps> = (props) => {
 
     return (
         <WidgetHeaderBar ref={dragRef}>
-            {!isAnUtility && (
-                <ActionBtns>
+            <ActionBtns>
+                <AppIcon style={{ backgroundImage: `url(${props.iconURI})` }} />
+                {!isAnUtility && (
                     <ConfigBtn onClick={onConfigHandler} />
-                </ActionBtns>
-            )}
+                )}
+            </ActionBtns>
             <WidgetHeaderLabel>{props.title}</WidgetHeaderLabel>
             <ActionBtns>
                 {!isAnUtility && (

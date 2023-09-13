@@ -17,7 +17,7 @@ const useProcessStore = create<useProcessStoreProps>((set, get) => ({
     addProcess: async (nProcess: WidgetProps) => {
         const { processes } = get();
         nProcess.processId = genUuid();
-        nProcess.startedAt = new Date().getDate();
+        nProcess.startedAt = new Date().getTime();
         processes.push(nProcess);
         set({
             processes: [

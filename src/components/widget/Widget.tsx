@@ -12,11 +12,11 @@ const WidgetBox = styled.div`
     height: 250px;
     position: absolute;
     border: 1px solid #000000CC;
-    background-color:#dbdbdb47;
+    background-color:#2c2c2cDD;
     display: flex;
     flex-direction: column;
     &.isActive{
-        background-color:#dbdbdbFF;
+        background-color:#2c2c2cFF;
     }
 `;
 
@@ -86,7 +86,10 @@ const LazyUtilityLauncher: React.FC<WidgetProps> = (props) => {
 
 const WidgetIframe: React.FC<WidgetProps> = (props) => {
     return (
-        <ContentIframe src={props.uri} />
+        <ContentIframe
+            // sandbox="allow-same-origin" 
+            src={props.uri}
+        />
     )
 }
 
@@ -96,7 +99,7 @@ const WidgetItem: React.FC<WidgetProps> = (props) => {
 
     const baseStyle = {
         width: `${props.width}px`,
-        height: `${props.height}px`,
+        height: `auto`,
         display: isMinimized ? 'none' : 'flex',
         visibility: isMinimized ? 'hidden' : 'visible',
         position: isAnUtility ? 'relative' : 'absolute',
@@ -105,6 +108,7 @@ const WidgetItem: React.FC<WidgetProps> = (props) => {
     if (!isAnUtility) {
         baseStyle.top = `${props.top}px`;
         baseStyle.left = `${props.left}px`;
+        baseStyle.height = `${props.height}px`;
     }
 
     useEffect(() => {
