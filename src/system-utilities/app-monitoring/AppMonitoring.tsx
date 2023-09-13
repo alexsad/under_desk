@@ -25,24 +25,34 @@ const TableApps = styled.table`
     text-align: left;
     padding:.5rem;
 
-    & > thead > tr > th {
-        font-weight: 500;
-
-        &.metricNumbers{
-            text-align: right;
+    & > thead > tr {
+        background-color: #1e1e1e;
+        & > th {
+            font-weight: 500;
+    
+            &.metricNumbers{
+                text-align: right;
+            }
         }
-    }
+    } 
 
-    & > tbody > tr > th {
-        font-weight: 300;
+    & > tbody > tr {
 
-        &.metricNumbers{
-            text-align: right;
+        &:nth-child(even) {
+            background-color: #1e1e1e;
         }
-        &.isCenter{
-            text-align: center;
+
+        & > th {
+            font-weight: 300;
+    
+            &.metricNumbers{
+                text-align: right;
+            }
+            &.isCenter{
+                text-align: center;
+            }
         }
-    }
+    } 
 `;
 
 interface SimplePBarProps {
@@ -74,30 +84,26 @@ interface MemoryEntry {
 }
 
 const AppMonitoring: React.FC = () => {
-    const { getProcessByDomain, stopProcess } = useProcessStore();
+    const { stopProcess, processes } = useProcessStore();
     const [, setIncrement] = useState(0);
     const perfomanceEntries = (performance.getEntries() as unknown as MemoryEntry[])
-        .filter(itemMem => {
-            if (itemMem["initiatorType"] !== "iframe") {
-                return false;
-            }
-            const processItem = getProcessByDomain(itemMem.name);
-            return !!processItem;
-        })
-        .map(({ name, duration, startTime }, indexEntry) => {
-            const processItem = getProcessByDomain(name);
-            return {
-                name: processItem?.title,
-                domain: new URL(name).host,
-                duration,
-                startTime,
-                iconUrl: processItem?.iconURI || '',
-                processId: processItem?.processId || `${indexEntry}`,
-                startedAt: processItem?.startedAt || new Date().getTime(),
-            }
-        });
+        .filter(itemMem => itemMem?.initiatorType === "iframe");
 
-    const highValue = perfomanceEntries.reduce((prev, curr) => Math.max(prev, curr.duration), 0);
+    const processEntries = processes.filter(processItem => {
+        return !!processItem.uri;
+    }).map(processItem => {
+        const itemMem = perfomanceEntries.find(itemMem => new URL(processItem.uri).host === new URL(itemMem?.name || '').host)
+        return {
+            name: processItem?.title,
+            domain: new URL(processItem.uri).host,
+            duration: itemMem?.duration || 0,
+            iconUrl: processItem?.iconURI || '',
+            processId: processItem?.processId || '',
+            startedAt: processItem?.startedAt || new Date().getTime(),
+        }
+    });
+
+    const highValue = processEntries.reduce((prev, curr) => Math.max(prev, curr.duration), 0);
 
     const killAppHandler = (processId: string) => async () => {
         await stopProcess(processId);
@@ -129,7 +135,7 @@ const AppMonitoring: React.FC = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {perfomanceEntries.map(performanceEntry => {
+                    {processEntries.map(performanceEntry => {
                         const [mins, secs] = msToTime(new Date().getTime() - performanceEntry.startedAt);
                         return (
                             <tr key={performanceEntry.processId}>

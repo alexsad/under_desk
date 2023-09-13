@@ -131,7 +131,7 @@ const WidgetItem: React.FC<WidgetProps> = (props) => {
                         });
                     }
                 }
-            }, 2000);
+            }, 1500);
         }
     }, [props.processId]);
 

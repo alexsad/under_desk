@@ -15,8 +15,7 @@ const WidgetHeaderBar = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-content: baseline;
-    align-items: center;
+    align-items: end;
 `;
 
 const WidgetHeaderLabel = styled.label`
