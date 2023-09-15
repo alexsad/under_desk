@@ -170,6 +170,7 @@ const DomainIcon = styled.div`
     background-position: center center;
     background-repeat: no-repeat;
     filter: invert(100%);
+    background-size: contain;
 `;
 
 const ClearIcon = styled(PriorityIcon)`
