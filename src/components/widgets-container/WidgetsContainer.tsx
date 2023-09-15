@@ -52,14 +52,24 @@ const WidgetsContainer: React.FC = () => {
             const oldProcessList = processes.filter(processItem => !processItem.modulePath && processItem.widgetStatus !== WidgetStatus.MINIMIZED);
             const widgetCount = oldProcessList.length;
             if (widgetCount > 0) {
-                const nWidth = (dimensions.width / widgetCount);
-                let index = 0;
+
+                const customizedWidgetWidth = oldProcessList.filter(widgetItem => !widgetItem.autoResize);
+                const customSize = customizedWidgetWidth.reduce((prev, curr) => {
+                    if (!curr.autoResize) {
+                        return curr.width + prev;
+                    }
+                    return prev;
+                }, 0);
+
+                const nWidth = (dimensions.width - customSize) / (widgetCount - customizedWidgetWidth.length);
+                let lastLeft = 0;
+
                 for await (const processItem of oldProcessList) {
-                    processItem.width = nWidth;
-                    processItem.left = nWidth * index;
+                    processItem.width = processItem.autoResize ? nWidth : processItem.width;
+                    processItem.left = lastLeft;
                     processItem.top = 0;
                     processItem.height = dimensions.height - 2;
-                    index++;
+                    lastLeft = lastLeft + processItem.width;
                     await updateProcess(processItem);
                 }
             }

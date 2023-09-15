@@ -32,7 +32,10 @@ const AppLauncherConfig: React.FC<WidgetProps> = ({ processId, processParentId, 
                 iconURI: appLauncherform.app_launcher_iconURI?.value,
                 width: Number(appLauncherform.app_launcher_width?.value),
                 height: Number(appLauncherform.app_launcher_height?.value),
+                autoResize: appLauncherform.app_launcher_uri?.checked,
             }
+
+            console.log('form:', appLauncherform.app_launcher_autoResize?.checked);
 
             if (parentProcess && appLauncherId) {
                 launcherProps.appLauncherId = parentProcess.appLauncherId;
@@ -67,8 +70,12 @@ const AppLauncherConfig: React.FC<WidgetProps> = ({ processId, processParentId, 
                 <FormInput id="app_launcher_iconURI" type="text" defaultValue={parentProcess?.iconURI} />
             </FormGroup>
             <FormGroup>
+                <FormLabel>Resize:</FormLabel>
+                <FormInput id="app_launcher_autoResize" type="checkbox" defaultChecked={parentProcess?.autoResize} />
+            </FormGroup>
+            <FormGroup>
                 <FormLabel>width:</FormLabel>
-                <FormInput disabled id="app_launcher_width" type="number" min="200" max="1000" defaultValue={Math.min(Math.floor(parentProcess?.width || 200), 1000)} />
+                <FormInput id="app_launcher_width" type="number" min="200" max="1000" defaultValue={Math.min(Math.floor(parentProcess?.width || 200), 1000)} />
             </FormGroup>
             <FormGroup>
                 <FormLabel>height:</FormLabel>

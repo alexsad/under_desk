@@ -21,6 +21,7 @@ export interface AppLauncherProps {
     description: string,
     width: number,
     height: number,
+    autoResize: boolean,
 }
 
 export interface WidgetProps extends AppLauncherProps {

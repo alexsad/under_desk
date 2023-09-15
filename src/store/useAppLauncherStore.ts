@@ -20,6 +20,7 @@ const useAppLauncherStore = create<useAppLauncherStoreProps>((set, get) => ({
             description: 'simple weather app',
             width: 400,
             height: 800,
+            autoResize: false,
         },
         // {
         //     appLauncherId: genUuid(),
@@ -31,15 +32,27 @@ const useAppLauncherStore = create<useAppLauncherStoreProps>((set, get) => ({
         //     width: 463,
         //     height: 690,
         // },
+
+        // {
+        //     appLauncherId: genUuid(),
+        //     createdAt: new Date().getTime(),
+        //     iconURI: 'https://merge-game.netlify.app/guessit-only-logo-min.png',
+        //     uri: 'https://merge-game.netlify.app/levels/easy',
+        //     title: 'merge game',
+        //     description: 'merge game',
+        //     width: 300,
+        //     height: 600,
+        // },
         {
             appLauncherId: genUuid(),
             createdAt: new Date().getTime(),
-            iconURI: 'https://merge-game.netlify.app/guessit-only-logo-min.png',
-            uri: 'https://merge-game.netlify.app/levels/easy',
-            title: 'merge game',
-            description: 'merge game',
-            width: 300,
+            iconURI: 'https://cdn-icons-png.flaticon.com/128/342/342344.png',
+            uri: 'https://www.calculadora-online.xyz/',
+            title: 'simple calc',
+            description: 'simple calc',
+            width: 400,
             height: 600,
+            autoResize: false,
         },
         // {
         //     appLauncherId: genUuid(),
@@ -70,6 +83,7 @@ const useAppLauncherStore = create<useAppLauncherStoreProps>((set, get) => ({
             description: 'secret santa list test app',
             width: 400,
             height: 500,
+            autoResize: false,
         },
         {
             appLauncherId: genUuid(),
@@ -80,6 +94,7 @@ const useAppLauncherStore = create<useAppLauncherStoreProps>((set, get) => ({
             description: 'simple notepad to share',
             width: 530,
             height: 600,
+            autoResize: false,
         },
         {
             appLauncherId: genUuid(),
@@ -90,6 +105,18 @@ const useAppLauncherStore = create<useAppLauncherStoreProps>((set, get) => ({
             description: 'A basic digital pomodoro',
             width: 300,
             height: 400,
+            autoResize: false,
+        },
+        {
+            appLauncherId: genUuid(),
+            createdAt: new Date().getTime(),
+            iconURI: 'https://cdn-icons-png.flaticon.com/128/3363/3363421.png',
+            uri: 'https://test-simulation2.netlify.app/',
+            title: 'test app',
+            description: 'test app',
+            width: 300,
+            height: 400,
+            autoResize: true,
         },
         {
             appLauncherId: genUuid(),
@@ -101,6 +128,7 @@ const useAppLauncherStore = create<useAppLauncherStoreProps>((set, get) => ({
             description: 'test app events',
             width: 300,
             height: 400,
+            autoResize: true,
         },
         {
             appLauncherId: genUuid(),
@@ -112,6 +140,7 @@ const useAppLauncherStore = create<useAppLauncherStoreProps>((set, get) => ({
             description: 'config app launcher',
             width: 300,
             height: 420,
+            autoResize: false,
         },
         {
             appLauncherId: genUuid(),
@@ -123,6 +152,7 @@ const useAppLauncherStore = create<useAppLauncherStoreProps>((set, get) => ({
             description: 'see all running apps',
             width: 700,
             height: 420,
+            autoResize: false,
         },
     ],
     addLauncher: async (nAppLauncher: AppLauncherProps) => {

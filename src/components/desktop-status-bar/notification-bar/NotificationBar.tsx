@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { NotificationItem, NotificationType } from "../../../interfaces/notification";
 import { useNotifyStore } from "../../../store/useNotifyStore";
@@ -15,6 +15,16 @@ const StatusItem = styled.div`
     background-size:cover;
     filter: invert(100%);
     // background-color: #000000DD;
+    &.hasNewNotification{
+        animation: horizontal-shaking .5s infinite;
+    }
+    @keyframes horizontal-shaking {
+        0% { transform: translateX(0) }
+        25% { transform: translateX(2px) }
+        50% { transform: translateX(-2px) }
+        75% { transform: translateX(2px) }
+        100% { transform: translateX(0) }
+    }
 `;
 
 const NotifyPoolBadge = styled.span`
@@ -280,8 +290,25 @@ const CriticalNotifyList: React.FC = () => {
 
 const NotifyPool: React.FC = () => {
     const { isVisible, notifications, setVisible } = useNotifyStore();
-    const notificationCount = Math.min(99, notifications.length);
+    const maxNotificationCount = Math.min(99, notifications.length);
     const hasCriticalInfo = notifications.some(notificationItem => notificationItem.type === NotificationType.ERROR);
+    const [notificationCount, setNotificationCount] = useState(notifications.length);
+    // const [hasNewNotification, setHasNewNotification] = useState(false);
+
+    const hasNewNotification = notifications.length > 0 && notifications.length > notificationCount;
+
+    useEffect(() => {
+        const setTimeoutId = setTimeout(() => {
+            if (notificationCount !== notifications.length) {
+                setNotificationCount(notifications.length);
+            }
+        }, 2000);
+        return () => {
+            clearTimeout(setTimeoutId);
+        }
+    }, [notificationCount, notifications.length]);
+
+
 
     const showNotifications = () => {
         setVisible(!isVisible);
@@ -289,8 +316,10 @@ const NotifyPool: React.FC = () => {
 
     return (
         <NotifyPoolBox>
-            <StatusItem onClick={showNotifications} />
-            <NotifyPoolBadge>{notificationCount}</NotifyPoolBadge>
+            <StatusItem onClick={showNotifications} className={classNames({
+                'hasNewNotification': hasNewNotification,
+            })} />
+            <NotifyPoolBadge>{maxNotificationCount}</NotifyPoolBadge>
             {(isVisible || hasCriticalInfo) && (
                 <NotifyListBox>
                     <NotifyContentList>
