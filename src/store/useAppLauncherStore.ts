@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { AppLauncherProps } from "../interfaces/widget";
-import { genUuid } from "../util/gen_uuid";
+import { genUUID } from "../util/gen_uuid";
 
 interface useAppLauncherStoreProps {
     appLaunchers: AppLauncherProps[],
@@ -12,7 +12,7 @@ interface useAppLauncherStoreProps {
 const useAppLauncherStore = create<useAppLauncherStoreProps>((set, get) => ({
     appLaunchers: [
         {
-            appLauncherId: genUuid(),
+            appLauncherId: genUUID(),
             createdAt: new Date().getTime(),
             iconURI: 'https://cdn-icons-png.flaticon.com/128/831/831268.png',
             uri: 'https://simple-weather-app2.netlify.app/',
@@ -23,7 +23,7 @@ const useAppLauncherStore = create<useAppLauncherStoreProps>((set, get) => ({
             autoResize: false,
         },
         // {
-        //     appLauncherId: genUuid(),
+        //     appLauncherId: genUUID(),
         //     createdAt: new Date().getTime(),
         //     iconURI: 'https://cdn-icons-png.flaticon.com/128/9502/9502324.png',
         //     uri: 'https://m-weather.netlify.app/',
@@ -34,7 +34,7 @@ const useAppLauncherStore = create<useAppLauncherStoreProps>((set, get) => ({
         // },
 
         // {
-        //     appLauncherId: genUuid(),
+        //     appLauncherId: genUUID(),
         //     createdAt: new Date().getTime(),
         //     iconURI: 'https://merge-game.netlify.app/guessit-only-logo-min.png',
         //     uri: 'https://merge-game.netlify.app/levels/easy',
@@ -44,7 +44,7 @@ const useAppLauncherStore = create<useAppLauncherStoreProps>((set, get) => ({
         //     height: 600,
         // },
         {
-            appLauncherId: genUuid(),
+            appLauncherId: genUUID(),
             createdAt: new Date().getTime(),
             iconURI: 'https://cdn-icons-png.flaticon.com/128/342/342344.png',
             uri: 'https://www.calculadora-online.xyz/',
@@ -55,7 +55,7 @@ const useAppLauncherStore = create<useAppLauncherStoreProps>((set, get) => ({
             autoResize: false,
         },
         // {
-        //     appLauncherId: genUuid(),
+        //     appLauncherId: genUUID(),
         //     createdAt: new Date().getTime(),
         //     iconURI: 'https://spritez.netlify.app/logo192.png',
         //     uri: 'https://spritez.netlify.app/sprite-builder',
@@ -65,7 +65,7 @@ const useAppLauncherStore = create<useAppLauncherStoreProps>((set, get) => ({
         //     height: 800,
         // },
         // {
-        //     appLauncherId: genUuid(),
+        //     appLauncherId: genUUID(),
         //     createdAt: new Date().getTime(),
         //     iconURI: 'https://upload.wikimedia.org/wikipedia/commons/9/95/Vue.js_Logo_2.svg',
         //     uri: 'https://logical-operators-test.netlify.app/',
@@ -75,7 +75,7 @@ const useAppLauncherStore = create<useAppLauncherStoreProps>((set, get) => ({
         //     height: 800,
         // },
         {
-            appLauncherId: genUuid(),
+            appLauncherId: genUUID(),
             createdAt: new Date().getTime(),
             iconURI: 'https://secret-santa-list.netlify.app/img/icons/favicon-32x32.png',
             uri: 'https://secret-santa-list.netlify.app/',
@@ -86,7 +86,7 @@ const useAppLauncherStore = create<useAppLauncherStoreProps>((set, get) => ({
             autoResize: false,
         },
         {
-            appLauncherId: genUuid(),
+            appLauncherId: genUUID(),
             createdAt: new Date().getTime(),
             iconURI: 'https://www.shareicon.net/data/48x48/2015/07/25/74796_notepad_256x256.png',
             uri: 'https://notepad.pw/under-desktop',
@@ -97,7 +97,7 @@ const useAppLauncherStore = create<useAppLauncherStoreProps>((set, get) => ({
             autoResize: false,
         },
         {
-            appLauncherId: genUuid(),
+            appLauncherId: genUUID(),
             createdAt: new Date().getTime(),
             iconURI: 'https://ferrugemjs.github.io/digital-pomodoro/assets/icons/icon-64x64.png',
             uri: 'https://ferrugemjs.github.io/digital-pomodoro/',
@@ -108,7 +108,7 @@ const useAppLauncherStore = create<useAppLauncherStoreProps>((set, get) => ({
             autoResize: false,
         },
         {
-            appLauncherId: genUuid(),
+            appLauncherId: genUUID(),
             createdAt: new Date().getTime(),
             iconURI: 'https://cdn-icons-png.flaticon.com/128/3363/3363421.png',
             uri: 'https://test-simulation2.netlify.app/',
@@ -119,7 +119,7 @@ const useAppLauncherStore = create<useAppLauncherStoreProps>((set, get) => ({
             autoResize: true,
         },
         {
-            appLauncherId: genUuid(),
+            appLauncherId: genUUID(),
             createdAt: new Date().getTime(),
             iconURI: 'assets/default_app_launcher.png',
             uri: 'https://under-desk-module-test.netlify.app/',
@@ -131,7 +131,7 @@ const useAppLauncherStore = create<useAppLauncherStoreProps>((set, get) => ({
             autoResize: true,
         },
         {
-            appLauncherId: genUuid(),
+            appLauncherId: genUUID(),
             createdAt: new Date().getTime(),
             iconURI: 'assets/add_app_launcher.png',
             uri: '',
@@ -143,7 +143,7 @@ const useAppLauncherStore = create<useAppLauncherStoreProps>((set, get) => ({
             autoResize: false,
         },
         {
-            appLauncherId: genUuid(),
+            appLauncherId: genUUID(),
             createdAt: new Date().getTime(),
             iconURI: 'assets/activity_monitor2.png',
             uri: '',
@@ -157,7 +157,7 @@ const useAppLauncherStore = create<useAppLauncherStoreProps>((set, get) => ({
     ],
     addLauncher: async (nAppLauncher: AppLauncherProps) => {
         const { appLaunchers } = get();
-        nAppLauncher.appLauncherId = genUuid();
+        nAppLauncher.appLauncherId = genUUID();
         nAppLauncher.createdAt = new Date().getDate();
         appLaunchers.push(nAppLauncher);
         set({

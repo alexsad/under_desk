@@ -20,17 +20,21 @@ const WidgetsContainer: React.FC = () => {
     const dropRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        if (dropRef.current) {
-            const { width, height } = dropRef.current?.getBoundingClientRect();
-            const { setDimensions } = useDesktop.getState();
-            setDimensions({ width, height });
+        if (typeof dropRef.current !== "undefined" && dropRef.current) {
+            try {
+                const { width, height } = dropRef.current.getBoundingClientRect();
+                const { setDimensions } = useDesktop.getState();
+                setDimensions({ width, height });
+            } catch (error) {
+                console.error(error);
+            }
         }
     }, []);
 
     useEffect(() => {
         const resizeHandler = () => {
-            if (dropRef.current) {
-                const { width, height } = dropRef.current?.getBoundingClientRect();
+            if (typeof dropRef.current !== "undefined" && dropRef.current) {
+                const { width, height } = dropRef.current.getBoundingClientRect();
                 const { setDimensions } = useDesktop.getState();
                 setDimensions({ width, height });
                 globalThis.dispatchEvent(new CustomEvent(PROCESS_COUNT_UPDATE, {

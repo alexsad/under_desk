@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { NotificationItem } from "../interfaces/notification";
-import { genUuid } from "../util/gen_uuid";
+import { genUUID } from "../util/gen_uuid";
 
 
 interface useNofityStoreProps {
@@ -8,7 +8,7 @@ interface useNofityStoreProps {
     notifications: NotificationItem[],
     setVisible: (visible: boolean) => void,
     addNotification: (pNotification: NotificationItem) => Promise<void>;
-    removeNotification: (notificationId: String) => Promise<void>;
+    removeNotification: (notificationId: string) => Promise<void>;
 }
 
 
@@ -20,7 +20,7 @@ const useNotifyStore = create<useNofityStoreProps>((set, get) => ({
             isVisible: visible,
         })
     },
-    removeNotification: async (notificationId: String) => {
+    removeNotification: async (notificationId: string) => {
         const { notifications } = get();
         const notificationIndex = notifications.findIndex(notificationItem => notificationItem.notificationId === notificationId);
         if (notificationIndex > -1) {
@@ -36,7 +36,7 @@ const useNotifyStore = create<useNofityStoreProps>((set, get) => ({
         const { notifications } = get();
         const nNotification = {
             ...pNotification,
-            notificationId: genUuid(),
+            notificationId: genUUID(),
             createAt: new Date().getTime(),
         }
         notifications.unshift(nNotification);

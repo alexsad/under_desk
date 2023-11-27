@@ -5,7 +5,6 @@ import { useAppLauncherStore } from "../../store/useAppLauncherStore";
 import { useProcessStore } from "../../store/useProcessStore";
 import { FormButton, FormGroup, FormInput, FormLabel } from "../../ui/FormElements";
 
-
 const AppLauncherConfigBox = styled.form`
     display: flex;
     flex-direction: column;
@@ -13,7 +12,6 @@ const AppLauncherConfigBox = styled.form`
     width: 100%;
     align-items: center;
 `;
-
 
 const AppLauncherConfig: React.FC<WidgetProps> = ({ processId, processParentId, appLauncherId }) => {
     const formRef = useRef<HTMLFormElement>(null);

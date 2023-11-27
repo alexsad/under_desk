@@ -3,14 +3,15 @@ import { styled } from "styled-components";
 import { PROCESS_COUNT_UPDATE } from "../../events/const_events";
 import { AppLauncherProps, ProcessStatus, WidgetStatus } from "../../interfaces/widget";
 import { useProcessStore } from "../../store/useProcessStore";
-import { genUuid } from "../../util/gen_uuid";
+import { genUUID } from "../../util/gen_uuid";
 
 const AppLauncherBox = styled.div`
     background-color: #291324;
-    margin: .2rem .5rem .2rem .5rem;
+    margin: .2rem;
     border-radius: 0px;
-    padding: .3rem;
+    padding: .2rem;
     position: relative;
+    
     &:hover{
         background-color: #5c5c5ccc;
     }
@@ -48,8 +49,8 @@ const AppLauncherIcon = styled.div`
     background-position: center center;
     background-repeat: no-repeat;
     background-size: contain;
-    width: 48px;
-    height: 48px;
+    width: 32px;
+    height: 32px;
     background-color: #393939;
 `;
 
@@ -64,7 +65,7 @@ const AppLauncher: React.FC<AppLauncherProps> = ({ iconURI, ...props }) => {
             const nProcess = {
                 ...props,
                 iconURI,
-                processId: genUuid(),
+                processId: genUUID(),
                 left: 200,
                 top: 50,
                 processStatus: ProcessStatus.LOADING,

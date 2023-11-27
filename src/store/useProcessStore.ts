@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { WidgetProps } from "../interfaces/widget";
-import { genUuid } from "../util/gen_uuid";
+import { genUUID } from "../util/gen_uuid";
 
 interface useProcessStoreProps {
     processes: WidgetProps[],
@@ -16,7 +16,7 @@ const useProcessStore = create<useProcessStoreProps>((set, get) => ({
     processes: [],
     addProcess: async (nProcess: WidgetProps) => {
         const { processes } = get();
-        nProcess.processId = genUuid();
+        nProcess.processId = genUUID();
         nProcess.startedAt = new Date().getTime();
         processes.push(nProcess);
         set({
